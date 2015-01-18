@@ -295,6 +295,11 @@ const struct options_table_entry session_options_table[] = {
 	  .style = "pane-border-style"
 	},
 
+	{ .name = "pane-border-linestyle",
+	  .type = OPTIONS_TABLE_STRING,
+	  .default_str = "single",
+	},
+
 	{ .name = "pane-border-style",
 	  .type = OPTIONS_TABLE_STYLE,
 	  .default_str = "default"

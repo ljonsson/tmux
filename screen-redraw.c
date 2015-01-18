@@ -274,12 +274,27 @@ screen_redraw_pane(struct client *c, struct window_pane *wp)
 void
 screen_redraw_draw_borders(struct client *c, int status, u_int top)
 {
+    struct session      *s = c->session;
 	struct window		*w = c->session->curw->window;
 	struct options		*oo = &c->session->options;
 	struct tty		*tty = &c->tty;
 	struct window_pane	*wp;
 	struct grid_cell	 active_gc, other_gc;
 	u_int		 	 i, j, type;
+    struct utf8_data cell_borders[] = {
+        { .data = {226, 149, 145}, .size = 3, .width = 1 },
+        { .data = {226, 149, 145}, .size = 3, .width = 1 },
+        { .data = {226, 149, 144}, .size = 3, .width = 1 },
+        { .data = {226, 149, 157}, .size = 3, .width = 1 },
+        { .data = {226, 149, 144}, .size = 3, .width = 1 },
+        { .data = {226, 149, 151}, .size = 3, .width = 1 },
+        { .data = {226, 149, 148}, .size = 3, .width = 1 },
+        { .data = {226, 149, 166}, .size = 3, .width = 1 },
+        { .data = {226, 149, 169}, .size = 3, .width = 1 },
+        { .data = {226, 149, 160}, .size = 3, .width = 1 },
+        { .data = {226, 149, 163}, .size = 3, .width = 1 },
+        { .data = {226, 149, 172}, .size = 3, .width = 1 },
+    };
 
 	style_apply(&other_gc, oo, "pane-border-style");
 	style_apply(&active_gc, oo, "pane-active-border-style");
@@ -295,7 +310,13 @@ screen_redraw_draw_borders(struct client *c, int status, u_int top)
 			else
 				tty_attributes(tty, &other_gc);
 			tty_cursor(tty, i, top + j);
-			tty_putc(tty, CELL_BORDERS[type]);
+            if (strcmp(options_get_string(&s->options, "pane-border-linestyle"), "double") == 0) {
+                /* double */
+                tty_putn(tty, cell_borders[type].data, 3, 1);
+            } else {
+                /* single */
+                tty_putc(tty, CELL_BORDERS[type]);
+            }
 		}
 	}
 }
