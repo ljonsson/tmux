@@ -704,6 +704,11 @@ const struct options_table_entry window_options_table[] = {
 	  .default_str = "reverse"
 	},
 
+	{ .name = "window-status-activity-format",
+	  .type = OPTIONS_TABLE_STRING,
+	  .default_str = "#I:#W#F"
+	},
+
 	{ .name = "window-status-attr",
 	  .type = OPTIONS_TABLE_ATTRIBUTES,
 	  .default_num = 0,
@@ -714,6 +719,11 @@ const struct options_table_entry window_options_table[] = {
 	  .type = OPTIONS_TABLE_ATTRIBUTES,
 	  .default_num = GRID_ATTR_REVERSE,
 	  .style = "window-status-bell-style"
+	},
+
+	{ .name = "window-status-bell-format",
+	  .type = OPTIONS_TABLE_STRING,
+	  .default_str = "#I:#W#F"
 	},
 
 	{ .name = "window-status-bell-bg",
@@ -760,6 +770,11 @@ const struct options_table_entry window_options_table[] = {
 	{ .name = "window-status-content-style",
 	  .type = OPTIONS_TABLE_STYLE,
 	  .default_str = "reverse"
+	},
+
+	{ .name = "window-status-content-format",
+	  .type = OPTIONS_TABLE_STRING,
+	  .default_str = "#I:#W#F"
 	},
 
 	{ .name = "window-status-current-attr",
