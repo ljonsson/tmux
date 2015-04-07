@@ -1,0 +1,7 @@
+*.o
+*.Po
+Makefile
+config.log
+config.status
+tmux
+tmux.1.mdoc
