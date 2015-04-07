@@ -468,6 +468,9 @@ format_window(struct format_tree *ft, struct window *w)
 	format_add(ft, "window_height", "%u", w->sy);
 	format_add(ft, "window_layout", "%s", layout);
 	format_add(ft, "window_panes", "%u", window_count_panes(w));
+	format_add(ft, "monitor_activity_enabled", "%d", options_get_number(&w->options, "monitor-activity"));
+	format_add(ft, "monitor_silence_enabled", "%d", options_get_number(&w->options, "monitor-silence"));
+	format_add(ft, "monitor_content_enabled", "%s", options_get_number(&w->options, "monitor-content"));
 
 	free(layout);
 }
