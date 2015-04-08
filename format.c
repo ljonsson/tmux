@@ -468,8 +468,8 @@ format_window(struct format_tree *ft, struct window *w)
 	format_add(ft, "window_height", "%u", w->sy);
 	format_add(ft, "window_layout", "%s", layout);
 	format_add(ft, "window_panes", "%u", window_count_panes(w));
-    format_add(ft, "window_zoomed_flag", "%u",
-        !!(w->flags & WINDOW_ZOOMED));
+	format_add(ft, "window_zoomed_flag", "%u",
+		!!(w->flags & WINDOW_ZOOMED));
 
 	free(layout);
 }
